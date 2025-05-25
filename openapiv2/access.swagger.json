@@ -1,0 +1,112 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "access.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AccessService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/list/{orgName}": {
+      "get": {
+        "operationId": "AccessService_ListRepos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accesspListReposResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AccessService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "accesspListReposResponse": {
+      "type": "object",
+      "properties": {
+        "repos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/accesspRepoAccessInfo"
+          }
+        }
+      }
+    },
+    "accesspRepoAccessInfo": {
+      "type": "object",
+      "properties": {
+        "repoName": {
+          "type": "string"
+        },
+        "allowedUsers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockedUsers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

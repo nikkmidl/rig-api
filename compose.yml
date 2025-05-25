@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  rig-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - .:/app
+    working_dir: /app
