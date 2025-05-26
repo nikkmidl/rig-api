@@ -31,7 +31,7 @@ run:
 	go run main.go
 
 .PHONY: build
-run:
+build:
 	go build
 
 .PHONY: clean
